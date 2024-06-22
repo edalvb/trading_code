@@ -1,5 +1,5 @@
 //@version=5
-indicator("time zone", overlay=true)
+indicator("Time Zone LD NY", overlay=true)
 
 // Day
 s = input.session("0000-0015", title="Day Session")
