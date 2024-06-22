@@ -1,0 +1,28 @@
+//@version=5
+indicator("Mostrar pips de vela específica", overlay=true)
+
+// Input para la hora y el minuto específicos
+hora = input.time(timestamp("2024-06-5 08:15 GMT-4"), title="Hora y minuto específicos", group="Parámetros de entrada")
+
+// Convertir timestamp de entrada a hora y minuto
+target_day = dayofweek(hora)
+target_hour = hour(hora)
+target_minute = minute(hora)
+
+// Obtener hora y minuto de la vela actual
+current_hour = hour(time)
+current_minute = minute(time)
+
+// Verificar si la vela actual es la deseada
+es_vela_objetivo = (dayofweek == target_day and current_hour == target_hour and current_minute == target_minute)
+
+// Mostrar pips solo para la vela objetivo
+if es_vela_objetivo
+    // Calcular pips de la vela
+    pips = (high - low) * 10000
+
+    // Crear una etiqueta para mostrar los pips
+    label.new(x=bar_index, y=high, text="Pips: " + str.tostring(pips), color=color.red, style=label.style_label_down, textcolor=color.white, size=size.normal)
+
+    // Dibujar una línea vertical en la vela objetivo
+    // line.new(x1=bar_index, y1=low, x2=bar_index, y2=high, color=color.blue, width=2, style=line.style_solid)

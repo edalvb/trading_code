@@ -1,0 +1,20 @@
+//@version=5
+indicator("time zone", overlay=true)
+
+// Day
+s = input.session("0000-0015", title="Day Session")
+t1 = (time(timeframe.period, s) != 0)
+c2 = color.new(color.blue, 85)
+bgcolor(t1 ? c2 : na)
+
+// London
+lds = input.session("0200-0500", title="London Session")
+ldt1 = (time(timeframe.period, lds) != 0)
+ldc2 = color.new(color.black, 90)
+bgcolor(ldt1 ? ldc2 : na)
+
+// New York
+nys = input.session("0800-1030", title="New York Session")
+nyt1 = (time(timeframe.period, nys) != 0)
+nyc2 = color.new(color.black, 85)
+bgcolor(nyt1 ? nyc2 : na)
